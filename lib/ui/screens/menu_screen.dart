@@ -77,7 +77,7 @@ class _MenuScreenState extends State<MenuScreen> {
 }
 
 class CashierInfo extends StatelessWidget {
-  String identificator;
+  final String identificator;
 
   CashierInfo({
     super.key,
@@ -107,9 +107,9 @@ class CashierInfo extends StatelessWidget {
 }
 //TODO вынести в отдельный файл
 class Header extends StatelessWidget {
-  String companyName;
-  String unp;
-  String cashboxNumber;
+  final String companyName;
+  final String unp;
+  final String cashboxNumber;
 
   Header(
       {super.key,
