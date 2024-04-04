@@ -18,9 +18,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      // home: const AuthScreen(),
       routes: routes,
-      initialRoute: '/auth_screen',
+      initialRoute: '/splash_screen',
     );
   }
 }

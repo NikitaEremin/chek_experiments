@@ -105,7 +105,7 @@ class CashierInfo extends StatelessWidget {
     );
   }
 }
-
+//TODO вынести в отдельный файл
 class Header extends StatelessWidget {
   String companyName;
   String unp;

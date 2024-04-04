@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../theme/colors.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -10,6 +9,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+
   final TextEditingController _login = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
