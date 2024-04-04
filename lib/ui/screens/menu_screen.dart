@@ -62,7 +62,7 @@ class _MenuScreenState extends State<MenuScreen> {
             height: MediaQuery.of(context).size.height * 0.07,
             child: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushNamed('/auth_screen');
               },
               child: const ListTile(
                 leading: Icon(Icons.logout_outlined),
