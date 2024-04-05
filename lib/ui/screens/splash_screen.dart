@@ -1,7 +1,8 @@
-import 'package:chek_experiments/ui/screens/menu_screen.dart';
+import 'package:chek_experiments/ui/screens/auth_screen.dart';
 import 'package:chek_experiments/ui/screens/transitions.dart';
 import 'package:chek_experiments/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     _controller = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
@@ -32,15 +34,24 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.easeOut, // Применить кривую анимации
     ));
 
-    _fadeanimation = Tween<double>(begin: 0.4, end: 1.0).animate(_controller);
+    _fadeanimation = Tween<double>(begin: 0.5, end: 1.0).animate(_controller);
 
     _controller.forward();
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).push(FadeTransitionRoute(widget: MenuScreen()));
+        Navigator.of(context).pushReplacement(FadeTransitionRoute(widget: AuthScreen()));
       }
     });
+  }
+
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    overlays: SystemUiOverlay.values);
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -78,11 +89,5 @@ class _SplashScreenState extends State<SplashScreen>
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
