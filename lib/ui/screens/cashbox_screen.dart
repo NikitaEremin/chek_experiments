@@ -1,6 +1,10 @@
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:chek_experiments/ui/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import '../theme/colors.dart';
 
 class CashBoxScreen extends StatefulWidget {
@@ -16,7 +20,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         _isLoading = true;
       });
@@ -27,6 +31,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: AppColors.darkGreen,
         title: const Text(
@@ -43,16 +48,56 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   }
 
   buildCashBoxScreen() {
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
-        ),
-        FilledButton(
-          onPressed: () {},
-          child: Text('Открыть смену'),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'УНП: ${Constants.unp}',
+                style: AppTextStyles.menuText,
+              ),
+              Text(
+                'РН: ${Constants.cashboxNumber}',
+                style: AppTextStyles.menuText,
+              ),
+            ],
+          ),
+          FilledButton(
+            style: ButtonStyle(
+              minimumSize:
+                  MaterialStateProperty.all(Size(double.maxFinite, 50)),
+              backgroundColor: MaterialStateProperty.all(AppColors.darkGreen),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+              elevation: MaterialStateProperty.all<double>(5),
+            ),
+            onPressed: () {},
+            child: const Text(
+              'Открыть смену', style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Смена №ХХ',
+                style: AppTextStyles.menuText,
+              ),
+
+              Text(
+                '${DateFormat.yMd().format(DateTime.now())} ${DateFormat.Hms().format(DateTime.now())}',
+                style: AppTextStyles.menuText,
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

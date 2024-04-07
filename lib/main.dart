@@ -1,3 +1,4 @@
+import 'package:chek_experiments/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'router/routes.dart';
 
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        splashColor: Color(0xFFE2FFE0),
+        fontFamily: 'Golos',
+        scaffoldBackgroundColor: AppColors.bgColor,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),

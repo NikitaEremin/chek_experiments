@@ -1,5 +1,7 @@
+import 'package:chek_experiments/ui/screens/transitions.dart';
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
+import 'menu_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -128,7 +130,8 @@ class _AuthScreenState extends State<AuthScreen> {
                               )),
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).pushNamed('/menu_screen');
+                              // FadeTransitionRoute(widget: MenuScreen());
+                              Navigator.of(context).push(FadeTransitionRoute(widget: MenuScreen()));
                               print('${_login.text}@4ek.by');
                             },
                           ),
@@ -140,7 +143,6 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               Expanded(
                 child: Container(
-
                   alignment: Alignment.bottomLeft,
                   child: IconButton(onPressed: () {}, icon: Icon(Icons.info_outline), color: Colors.white,),
                 ),

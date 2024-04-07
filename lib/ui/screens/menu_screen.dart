@@ -1,7 +1,10 @@
+import 'package:chek_experiments/ui/constants.dart';
 import 'package:chek_experiments/ui/theme/colors.dart';
-import 'package:chek_experiments/ui/theme/text_styles.dart';
 import 'package:chek_experiments/ui/widgets/menu_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/header_widget.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -14,7 +17,13 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     List<MenuListItem> menuItems = [
-      MenuListItem(icon: const Icon(Icons.point_of_sale), title: 'Касса'),
+      MenuListItem(
+          icon: const Icon(
+            Icons.point_of_sale_outlined,
+            size: 40,
+            color: Colors.white,
+          ),
+          title: 'Касса'),
       MenuListItem(icon: const Icon(Icons.file_copy), title: 'Отчёты'),
       MenuListItem(icon: const Icon(Icons.settings), title: 'Настройки'),
       MenuListItem(icon: const Icon(Icons.help_center), title: 'Техподдержка'),
@@ -25,33 +34,46 @@ class _MenuScreenState extends State<MenuScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Header(
-            companyName: 'СОО "Саблезубый заяц"',
-            unp: '123456789',
-            cashboxNumber: '987654321',
-          ),
-          CashierInfo(
-            identificator: 'Фамилия И.О.',
+            companyName: Constants.companyName,
+            unp: Constants.unp,
+            cashboxNumber: Constants.cashboxNumber,
+            cashierId: Constants.cashierId,
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: menuItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                if (menuItems[index].title == 'Касса') {
-                  return ListTile(
-                    leading: menuItems[index].icon,
-                    title: Text(menuItems[index].title),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/cashbox_screen');
-                    },
-                  );
-                } else {
-                  return ExpansionTile(
-                    leading: menuItems[index].icon,
-                    title: Text(menuItems[index].title),
-                    children: [MenuItem(id: menuItems[index].title)],
-                  );
-                }
-              },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListView.builder(
+                itemCount: menuItems.length,
+                itemBuilder: (BuildContext context, int index) {
+                  if (menuItems[index].title == 'Касса') {
+                    return FilledButton(
+                        style: ButtonStyle(
+                          minimumSize:
+                          MaterialStateProperty.all(Size(double.maxFinite, 100)),
+                          backgroundColor: MaterialStateProperty.all(AppColors.darkGreen),
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25))),
+                          elevation: MaterialStateProperty.all<double>(10),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/cashbox_screen');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            menuItems[index].icon,
+                            Text(menuItems[index].title, style: TextStyle(fontSize: 30),),
+                          ],
+                        ));
+                  } else {
+                    return ExpansionTile(
+                      leading: menuItems[index].icon,
+                      title: Text(menuItems[index].title),
+                      children: [MenuItem(id: menuItems[index].title)],
+                    );
+                  }
+                },
+              ),
             ),
           ),
           Container(
@@ -70,66 +92,6 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class CashierInfo extends StatelessWidget {
-  final String identificator;
-
-  CashierInfo({
-    super.key,
-    required this.identificator,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                child: Icon(Icons.person_outline_rounded, size: 25),
-              ),
-              Text('Кассир:   $identificator', style: AppTextStyles.menuText)
-            ],
-          ),
-          const Divider(thickness: 2, color: AppColors.darkGreen),
-        ],
-      ),
-    );
-  }
-}
-//TODO вынести в отдельный файл
-class Header extends StatelessWidget {
-  final String companyName;
-  final String unp;
-  final String cashboxNumber;
-
-  Header(
-      {super.key,
-      required this.companyName,
-      required this.unp,
-      required this.cashboxNumber});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(10, 45, 0, 10),
-      width: MediaQuery.of(context).size.width,
-      color: AppColors.darkGreen,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(companyName, style: AppTextStyles.headerText),
-          const SizedBox(height: 15),
-          Text('УНП: $unp', style: AppTextStyles.headerTextInfo),
-          Text('РН: $cashboxNumber', style: AppTextStyles.headerTextInfo)
         ],
       ),
     );
