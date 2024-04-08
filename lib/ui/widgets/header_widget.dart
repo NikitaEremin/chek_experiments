@@ -23,9 +23,10 @@ class Header extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(
         gradient: LinearGradient(colors: [
-          AppColors.darkGreen,
-          AppColors.appBarGradient,
-        ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+          AppColors.littleGreen,
+          AppColors.mediumGreen,
+
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         // borderRadius: BorderRadius.vertical(
         //     top: Radius.zero, bottom: Radius.circular(30)),
       ),
@@ -37,7 +38,7 @@ class Header extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(15, 35, 15, 15),
             child: Column(
               children: [
-                Text('$companyName', style: AppTextStyles.headerText),
+                Text(companyName, style: AppTextStyles.headerText),
                 Text('УНП: $unp', style: AppTextStyles.headerTextInfo),
                 Text('РН: $cashboxNumber', style: AppTextStyles.headerTextInfo),
                 Row(

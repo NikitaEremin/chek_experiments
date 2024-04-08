@@ -1,7 +1,5 @@
-import 'package:chek_experiments/ui/screens/transitions.dart';
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
-import 'menu_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -42,10 +40,9 @@ class _AuthScreenState extends State<AuthScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                stops: [0, 0.65],
                 colors: <Color>[
                   AppColors.startGradient,
-                  AppColors.darkGreen,
+                  AppColors.endGradient,
                 ],
               )),
           child: Column(
@@ -94,7 +91,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Iskra',
                             fontSize: 20,
-                            color: Colors.white.withOpacity(0.5),
+                            color: Colors.white.withOpacity(0.8),
                           ),
                         ),
                       ],
@@ -144,9 +141,8 @@ class _AuthScreenState extends State<AuthScreen> {
                               )),
                           InkWell(
                             onTap: () {
-                              // FadeTransitionRoute(widget: MenuScreen());
-                              Navigator.of(context).push(FadeTransitionRoute(widget: MenuScreen()));
-                              print('${_login.text}@4ek.by');
+                              Navigator.of(context).pushReplacementNamed('/menu_screen');
+                              // print('${_login.text}@4ek.by');
                             },
                           ),
                         ]),
@@ -158,7 +154,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Expanded(
                 child: Container(
                   alignment: Alignment.bottomLeft,
-                  child: IconButton(onPressed: () {}, icon: Icon(Icons.info_outline), color: Colors.white,),
+                  child: IconButton(onPressed: () {}, icon: Icon(Icons.info_outline_rounded, size: 40,), color: Colors.white,),
                 ),
               ),
               const Align(

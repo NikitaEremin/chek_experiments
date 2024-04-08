@@ -33,7 +33,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
       appBar: AppBar(
 
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.darkGreen,
+        backgroundColor: AppColors.mediumGreen,
         title: const Text(
           'Касса',
           style: AppTextStyles.headerText,
@@ -72,7 +72,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
             style: ButtonStyle(
               minimumSize:
                   MaterialStateProperty.all(Size(double.maxFinite, 50)),
-              backgroundColor: MaterialStateProperty.all(AppColors.darkGreen),
+              backgroundColor: MaterialStateProperty.all(AppColors.mediumGreen),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
               elevation: MaterialStateProperty.all<double>(5),
