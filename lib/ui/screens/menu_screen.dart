@@ -1,7 +1,6 @@
 import 'package:chek_experiments/ui/constants.dart';
 import 'package:chek_experiments/ui/theme/colors.dart';
 import 'package:chek_experiments/ui/widgets/menu_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/header_widget.dart';
