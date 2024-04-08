@@ -16,6 +16,20 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _password = TextEditingController();
 
   @override
+  void initState() {
+    _login.addListener(() { });
+    _password.addListener(() { });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _login.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
