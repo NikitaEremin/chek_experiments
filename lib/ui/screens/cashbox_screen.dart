@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
+
 import 'package:intl/intl.dart';
 import 'package:chek_experiments/ui/theme/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
       appBar: AppBar(
 
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.mediumGreen,
+        backgroundColor: AppColors.mediumGreen.withOpacity(0.7),
         title: const Text(
           'Касса',
           style: AppTextStyles.headerText,

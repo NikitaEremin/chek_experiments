@@ -1,4 +1,4 @@
-import 'package:chek_experiments/ui/screens/auth_screen.dart';
+import 'package:chek_experiments/ui/screens/choose_screen.dart';
 import 'package:chek_experiments/ui/screens/transitions.dart';
 import 'package:chek_experiments/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).push(FadeTransitionRoute(widget: const AuthScreen()));
+        Navigator.of(context).push(FadeTransitionRoute(widget: const ChooseScreen()));
       }
     });
   }

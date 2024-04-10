@@ -17,6 +17,6 @@ class AppColors {
   static const Color endGradient = Color(0xFF1B5826);
 
   //background color
-  static const Color bgColor = Color(0xFFE2FFE0);
+  static const Color bgColor = Color(0xFFEFFFED);
 
 }
