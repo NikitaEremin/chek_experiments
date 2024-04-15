@@ -1,5 +1,5 @@
 
-import 'package:chek_experiments/ui/screens/cashbox_screen.dart';
+import 'package:chek_experiments/ui/screens/cash_register_screen.dart';
 import 'package:chek_experiments/ui/screens/reports_screen.dart';
 import 'package:chek_experiments/ui/screens/sell_screen.dart';
 import 'package:chek_experiments/ui/screens/settings_screen.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedPageIndex = 0;
   final List<Widget> _pages = [
-    CashBoxScreen(),
+    CashRegisterScreen(),
     SellScreen(),
     ReportsScreen(),
     SettingsScreen(),
