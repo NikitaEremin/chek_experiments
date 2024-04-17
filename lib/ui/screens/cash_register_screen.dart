@@ -32,7 +32,7 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
       appBar: AppBar(
 
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.mediumGreen.withOpacity(0.7),
+        backgroundColor: AppColors.littleGreen.withOpacity(0.7),
         title: const Text(
           'Касса',
           style: AppTextStyles.headerText,
@@ -67,18 +67,10 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
               ),
             ],
           ),
-          FilledButton(
-            style: ButtonStyle(
-              minimumSize:
-                  MaterialStateProperty.all(Size(double.maxFinite, 50)),
-              backgroundColor: MaterialStateProperty.all(AppColors.mediumGreen),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-              elevation: MaterialStateProperty.all<double>(5),
-            ),
+          OutlinedButton(
             onPressed: () {},
             child: const Text(
-              'Открыть смену', style: TextStyle(fontSize: 20, color: Colors.white),
+              'Открыть смену', style: TextStyle(fontSize: 20),
             ),
           ),
           Row(
@@ -95,20 +87,12 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
               ),
             ],
           ),
-          FilledButton(
-            style: ButtonStyle(
-              minimumSize:
-              MaterialStateProperty.all(Size(double.maxFinite, 50)),
-              backgroundColor: MaterialStateProperty.all(AppColors.mediumGreen),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-              elevation: MaterialStateProperty.all<double>(5),
-            ),
+          OutlinedButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/cashbox_screen');
             },
             child: const Text(
-              'Денежный ящик', style: TextStyle(fontSize: 20, color: Colors.white),
+              'Денежный ящик', style: TextStyle(fontSize: 20),
             ),
           ),
         ],

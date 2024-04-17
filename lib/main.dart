@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        primarySwatch: Colors.green,
         splashColor: AppColors.bgColor,
         fontFamily: 'Iskra',
         scaffoldBackgroundColor: AppColors.bgColor,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.littleGreen),
         useMaterial3: true,
       ),
       routes: routes,

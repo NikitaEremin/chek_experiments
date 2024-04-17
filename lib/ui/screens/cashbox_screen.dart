@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../theme/colors.dart';
 
 class CashBoxScreen extends StatefulWidget {
@@ -12,36 +10,59 @@ class CashBoxScreen extends StatefulWidget {
 
 class _CashBoxScreenState extends State<CashBoxScreen> {
   TextEditingController sumController = TextEditingController();
+  RegExp fullyRegExp = RegExp(r"\d{1,9},\d{2}");
+  RegExp commaRegExp = RegExp(r"\d*,");
+  bool isCommaActive = true;
+  bool isNotFully = true;
+  bool backspaceOnly = true;
 
   onButtonPress(int index) {
     setState(() {
-      if (index == 9) {
-        sumController.text += ',';
-      } else if (index == 10) {
-        sumController.text += '0';
-      } else if (index == 11) {
-        if (sumController.text.isNotEmpty) {
-          sumController.text =
-              sumController.text.substring(0, sumController.text.length - 1);
-        } else {
+      switch (isNotFully) {
+        case true:
+          if (index == 9) {
+            sumController.text += sumController.text.isEmpty ? '0,' : ',';
+            isCommaActive =
+                commaRegExp.hasMatch(sumController.text) ? false : true;
+          } else if (index == 10) {
+            sumController.text += '0';
+          } else if (index == 11) {
+            if (sumController.text.isNotEmpty) {
+              sumController.text = sumController.text
+                  .substring(0, sumController.text.length - 1);
+              isCommaActive =
+                  commaRegExp.hasMatch(sumController.text) ? false : true;
+            } else {
+              return;
+            }
+          } else {
+            sumController.text += (index + 1).toString();
+          }
+
+          isNotFully = fullyRegExp.hasMatch(sumController.text) ? false : true;
+
+        case false:
+          if (index == 11) {
+            sumController.text =
+                sumController.text.substring(0, sumController.text.length - 1);
+            isNotFully =
+                fullyRegExp.hasMatch(sumController.text) ? false : true;
+          }
           return;
-        }
-      } else {
-        sumController.text += (index + 1).toString();
       }
     });
   }
 
-  Widget _buildButton(Widget child, int index) {
-    return FilledButton(
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(AppColors.mediumGreen),
-          elevation: MaterialStateProperty.all(5),
-          shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-          iconSize: MaterialStateProperty.all(30),
-          textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))),
-      onPressed: () => onButtonPress(index),
+  Widget _buildButton(Widget child, int index, bool isActive) {
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        side: const BorderSide(width: 1.5, color: AppColors.littleGreen),
+        textStyle: const TextStyle(fontSize: 30, fontFamily: 'Iskra'),
+        backgroundColor: Colors.white,
+        disabledBackgroundColor: Colors.grey[300],
+      ),
+      onPressed: isActive ? () => onButtonPress(index) : null,
       child: child,
     );
   }
@@ -49,65 +70,85 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text("Денежный ящик"),),
+      appBar: AppBar(
+        title: const Text("Денежный ящик"),
+      ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             Container(
+              alignment: Alignment.centerRight,
               width: double.infinity,
               height: MediaQuery.of(context).size.width * 0.35,
               decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.mediumGreen, width: 2.0),
+                  border: Border.all(color: AppColors.littleGreen, width: 2.0),
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.white),
-              child: Column(
-                children: [
-                  TextField(
-                    // inputFormatters: [
-                    //   FilteringTextInputFormatter.allow(
-                    //       RegExp(r'^\d*\.?\d{0,2}$')),
-                    // ],
-                    textAlign: TextAlign.right,
-                    // enableInteractiveSelection: false,
-                    autofocus: true,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    // showCursor: false,
-                    // keyboardType: TextInputType.none,
-                    controller: sumController,
-                  ),
-                  Text('Тут должна быть сумма'),
-                ],
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 60,
+                ),
+                maxLines: 1,
+                textAlign: TextAlign.end,
+                enableInteractiveSelection: false,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                ),
+                showCursor: false,
+                keyboardType: TextInputType.none,
+                controller: sumController,
               ),
             ),
             Expanded(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: GridView.count(
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: 1.5 / 1,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
                     crossAxisCount: 3,
                     children: [
                       ...List.generate(
                         9,
-                        (index) =>
-                            _buildButton(Text((index + 1).toString()), index),
+                        (index) => _buildButton(
+                            Text((index + 1).toString()), index, true),
                       ),
-                      _buildButton(Text(','), 9),
-                      _buildButton(Text('0'), 10),
-                      _buildButton(Icon(Icons.backspace), 11),
+                      _buildButton(const Text(','), 9, isCommaActive),
+                      _buildButton(const Text('0'), 10, true),
+                      _buildButton(
+                          const Icon(
+                            Icons.backspace,
+                            size: 30,
+                          ),
+                          11,
+                          true),
                     ]),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(onPressed: (){}, child: Text('Внести')),
-                ElevatedButton(onPressed: (){}, child: Text('Изъять')),
-              ],
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: const Text('Внести'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      child: const Text('Изъять'),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

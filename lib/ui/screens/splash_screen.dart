@@ -60,8 +60,8 @@ class _SplashScreenState extends State<SplashScreen>
             end: Alignment.bottomRight,
             stops: [0, 0.65],
             colors: <Color>[
-              AppColors.startGradient,
-              AppColors.endGradient,
+              AppColors.littleGreen,
+              AppColors.darkGreen,
             ],
           )),
           child: SlideTransition(

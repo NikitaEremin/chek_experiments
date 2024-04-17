@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
-
-
-  static const Color littleGreen = Color(0xFF9DBF21);
-  static const Color mediumGreen = Color(0xFF6DA644);
-  static const Color darkGreen = Color(0xFF025939);
-
-
-  static const Color cardContent = Color(0xFF025939);
-
-
-  //auth_screen gradient#
-  static const Color startGradient = Color(0xFF93BF38);
-  static const Color endGradient = Color(0xFF1B5826);
+  /*Цвета из брендбука*/
+  static const Color black = Color(0xFF001B1A);
+  static const Color darkGreen = Color(0xFF0c5e2b);
+  static const Color littleGreen = Color(0xFF93Bf38);
+  static const Color white = Color(0xFFFFFFFF);
+  // static const Color mediumGreen = Color(0xFF6DA644);
 
   //background color
-  static const Color bgColor = Color(0xFFEFFFED);
+  static const Color bgColor = Colors.white;
 
 }

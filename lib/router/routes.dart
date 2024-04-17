@@ -15,3 +15,5 @@ final routes = <String, WidgetBuilder>{
   '/menu_screen(botton_nav)': (BuildContext context) => const HomeScreen(),
   '/cashbox_screen': (BuildContext context) => const CashBoxScreen(),
 };
+
+const initialRoute = '/splash_screen';

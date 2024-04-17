@@ -41,8 +41,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: <Color>[
-                  AppColors.startGradient,
-                  AppColors.endGradient,
+                  AppColors.littleGreen,
+                  AppColors.darkGreen,
                 ],
               )),
           child: Column(
@@ -141,7 +141,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               )),
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).pushReplacementNamed('/menu_screen');
+                              Navigator.of(context).pushNamed('/menu_screen(botton_nav)');
                               // print('${_login.text}@4ek.by');
                             },
                           ),
@@ -154,7 +154,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Expanded(
                 child: Container(
                   alignment: Alignment.bottomLeft,
-                  child: IconButton(onPressed: () {}, icon: Icon(Icons.info_outline_rounded, size: 40,), color: Colors.white,),
+                  child: IconButton(onPressed: () {}, icon: const Icon(Icons.info_outline_rounded, size: 40,), color: Colors.white,),
                 ),
               ),
               const Align(

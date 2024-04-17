@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../theme/colors.dart';
 
@@ -18,7 +16,7 @@ class MenuElement extends StatelessWidget {
         style: ButtonStyle(
           minimumSize:
           MaterialStateProperty.all(const Size(double.maxFinite, 75)),
-          backgroundColor: MaterialStateProperty.all(AppColors.mediumGreen),
+          backgroundColor: MaterialStateProperty.all(AppColors.littleGreen),
           shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
           elevation: MaterialStateProperty.all<double>(7.5),
@@ -34,7 +32,7 @@ class MenuElement extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 30, color: AppColors.cardContent),
+                style: const TextStyle(fontSize: 30, color: AppColors.darkGreen),
 
               ),
             ),
