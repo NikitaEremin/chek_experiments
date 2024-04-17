@@ -34,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
         destinations: [
           NavigationDestination(
             icon: Icon(_selectedPageIndex == 0
-                ? Icons.point_of_sale
-                : Icons.point_of_sale_outlined),
+                ? Icons.payments
+                : Icons.payments_outlined),
             label: 'Касса',
           ),
           NavigationDestination(
