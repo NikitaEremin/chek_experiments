@@ -35,12 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
         onDestinationSelected: (value) => _openPage(value),
         destinations: [
           NavigationDestination(
-            icon: SvgPicture.asset(
-              height: 32,
-              // width:  36,
-              _selectedPageIndex == 0
-                  ? 'assets/images/cashbox_filled.svg'
-                  : 'assets/images/cashbox_outlined.svg',
+            icon: Transform.translate(
+              offset: const Offset(0,3),
+              child: SvgPicture.asset(
+                height: 32,
+                // width:  36,
+                _selectedPageIndex == 0
+                    ? 'assets/images/cashbox_filled.svg'
+                    : 'assets/images/cashbox_outlined.svg',
+              ),
             ),
             // icon: Image.asset(_selectedPageIndex == 0
             //     ?'assets/images/cashbox_filled.png'
