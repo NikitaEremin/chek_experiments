@@ -4,6 +4,7 @@ import 'package:chek_experiments/ui/screens/sell_screen.dart';
 import 'package:chek_experiments/ui/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,19 +30,32 @@ class _HomeScreenState extends State<HomeScreen> {
         indicatorColor: AppColors.darkGreen.withOpacity(0.5),
         selectedIndex: _selectedPageIndex,
         backgroundColor: AppColors.littleGreen.withOpacity(0.5),
-        overlayColor: MaterialStateProperty.all(AppColors.darkGreen.withOpacity(0.5)),
+        overlayColor:
+            MaterialStateProperty.all(AppColors.darkGreen.withOpacity(0.5)),
         onDestinationSelected: (value) => _openPage(value),
         destinations: [
           NavigationDestination(
-            icon: Icon(_selectedPageIndex == 0
-                ? Icons.payments
-                : Icons.payments_outlined),
+            icon: SvgPicture.asset(
+              height: 32,
+              // width:  36,
+              _selectedPageIndex == 0
+                  ? 'assets/images/cashbox_filled.svg'
+                  : 'assets/images/cashbox_outlined.svg',
+            ),
+            // icon: Image.asset(_selectedPageIndex == 0
+            //     ?'assets/images/cashbox_filled.png'
+            //     :'assets/images/cashbox_outlined.png'),
+            // icon: Icon(_selectedPageIndex == 0
+            //     ? Icons.payments
+            //     : Icons.payments_outlined),
             label: 'Касса',
           ),
           NavigationDestination(
-            icon: Icon(_selectedPageIndex == 1
-                ? Icons.shopping_cart
-                : Icons.shopping_cart_outlined),
+            icon: Icon(
+              _selectedPageIndex == 1
+                  ? Icons.shopping_cart
+                  : Icons.shopping_cart_outlined,
+            ),
             label: 'Продажа',
           ),
           NavigationDestination(
