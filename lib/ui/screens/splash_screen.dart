@@ -1,10 +1,10 @@
-import 'package:chek_experiments/ui/screens/choose_screen.dart';
+import 'package:chek_experiments/ui/screens/home_screen(bottom_nav).dart';
 import 'package:chek_experiments/ui/screens/transitions.dart';
 import 'package:chek_experiments/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+   const SplashScreen({super.key});
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).push(FadeTransitionRoute(widget: const ChooseScreen()));
+        Navigator.of(context).push(FadeTransitionRoute(widget: const HomeScreen()));
       }
     });
   }

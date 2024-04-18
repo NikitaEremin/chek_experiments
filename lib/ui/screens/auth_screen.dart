@@ -9,14 +9,13 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-
   final TextEditingController _login = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
   @override
   void initState() {
-    _login.addListener(() { });
-    _password.addListener(() { });
+    _login.addListener(() {});
+    _password.addListener(() {});
     super.initState();
   }
 
@@ -38,13 +37,13 @@ class _AuthScreenState extends State<AuthScreen> {
           height: screenSize.height,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-                  AppColors.littleGreen,
-                  AppColors.darkGreen,
-                ],
-              )),
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[
+              AppColors.littleGreen,
+              AppColors.darkGreen,
+            ],
+          )),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -68,7 +67,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             margin: const EdgeInsets.only(right: 5),
                             decoration: BoxDecoration(
                               border:
-                              Border.all(width: 1, color: Colors.black12),
+                                  Border.all(width: 1, color: Colors.black12),
                               color: Colors.white.withOpacity(0.7),
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -76,7 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               controller: _login,
                               decoration: const InputDecoration(
                                   contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 10),
+                                      EdgeInsets.symmetric(horizontal: 10),
                                   border: InputBorder.none,
                                   label: Text(
                                     'Логин',
@@ -109,7 +108,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         obscureText: true,
                         decoration: const InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10),
+                                EdgeInsets.symmetric(horizontal: 10),
                             border: InputBorder.none,
                             label: Text(
                               'Пароль кассира',
@@ -132,16 +131,17 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: Stack(children: [
                           Center(
                               child: Text(
-                                'ВОЙТИ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 24,
-                                    fontFamily: 'Iskra',
-                                    color: Colors.white.withOpacity(0.75)),
-                              )),
+                            'ВОЙТИ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24,
+                                fontFamily: 'Iskra',
+                                color: Colors.white.withOpacity(0.75)),
+                          )),
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).pushNamed('/menu_screen(botton_nav)');
+                              Navigator.of(context)
+                                  .pushNamed('/menu_screen(botton_nav)');
                               // print('${_login.text}@4ek.by');
                             },
                           ),
@@ -154,7 +154,14 @@ class _AuthScreenState extends State<AuthScreen> {
               Expanded(
                 child: Container(
                   alignment: Alignment.bottomLeft,
-                  child: IconButton(onPressed: () {}, icon: const Icon(Icons.info_outline_rounded, size: 40,), color: Colors.white,),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.info_outline_rounded,
+                      size: 40,
+                    ),
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const Align(

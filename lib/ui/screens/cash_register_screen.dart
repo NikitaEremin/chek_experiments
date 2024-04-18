@@ -1,7 +1,5 @@
-
-import 'package:intl/intl.dart';
-import 'package:chek_experiments/ui/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../constants.dart';
 import '../theme/colors.dart';
@@ -30,14 +28,8 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.littleGreen.withOpacity(0.7),
-        title: const Text(
-          'Касса',
-          style: AppTextStyles.headerText,
-        ),
-      ),
+        backgroundColor: Colors.transparent,
+      ), //TODO возможно удалить?
       body: Center(
         child: _isLoading
             ? buildCashBoxScreen()
@@ -47,43 +39,76 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
   }
 
   buildCashBoxScreen() {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
+          Text(
+            'СОО Саблезубый заяц',
+            style: textTheme.headlineLarge,
           ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'УНП: ${Constants.unp}',
-                style: AppTextStyles.menuText,
+              const Icon(
+                Icons.business,
+                size: 60,
               ),
-              Text(
-                'РН: ${Constants.cashboxNumber}',
-                style: AppTextStyles.menuText,
-              ),
+              Column(
+                children: [
+                  Text(
+                    'УНП: ${Constants.unp}',
+                    style: textTheme.headlineMedium,
+                  ),
+                  Text(
+                    'РН: ${Constants.cashboxNumber}',
+                    style: textTheme.headlineMedium,
+                  ),
+                ],
+              )
             ],
           ),
           OutlinedButton(
             onPressed: () {},
-            child: const Text(
-              'Открыть смену', style: TextStyle(fontSize: 20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Кассир: ${Constants.cashierId}',
+                  style: textTheme.bodyLarge,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 6.0),
+                  child: Icon(
+                    Icons.change_circle,
+                    size: 24,
+                    color: AppColors.blackGreen,
+                  ),
+                ),
+              ],
             ),
           ),
+          SizedBox(height: 250,),
+          OutlinedButton(
+            onPressed: () {},
+            child: const Text(
+              'Открыть смену',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 'Смена №ХХ',
-                style: AppTextStyles.menuText,
+                // style: AppTextStyles.menuText,
               ),
-
               Text(
                 '${DateFormat.yMd().format(DateTime.now())} ${DateFormat.Hms().format(DateTime.now())}',
-                style: AppTextStyles.menuText,
+                // style: AppTextStyles.menuText,
               ),
             ],
           ),
@@ -92,7 +117,8 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
               Navigator.of(context).pushNamed('/cashbox_screen');
             },
             child: const Text(
-              'Денежный ящик', style: TextStyle(fontSize: 20),
+              'Денежный ящик',
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ],

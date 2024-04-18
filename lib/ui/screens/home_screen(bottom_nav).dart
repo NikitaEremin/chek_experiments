@@ -4,7 +4,6 @@ import 'package:chek_experiments/ui/screens/sell_screen.dart';
 import 'package:chek_experiments/ui/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import '../theme/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,30 +26,28 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: NavigationBar(
-        indicatorColor: AppColors.darkGreen.withOpacity(0.5),
+        indicatorColor: AppColors.darkGreen,
         selectedIndex: _selectedPageIndex,
-        backgroundColor: AppColors.littleGreen.withOpacity(0.5),
+        backgroundColor: AppColors.bottomNavBarColor,
         overlayColor:
             MaterialStateProperty.all(AppColors.darkGreen.withOpacity(0.5)),
         onDestinationSelected: (value) => _openPage(value),
         destinations: [
           NavigationDestination(
-            icon: Transform.translate(
-              offset: const Offset(0,3),
-              child: SvgPicture.asset(
-                height: 32,
-                // width:  36,
-                _selectedPageIndex == 0
-                    ? 'assets/images/cashbox_filled.svg'
-                    : 'assets/images/cashbox_outlined.svg',
-              ),
-            ),
-            // icon: Image.asset(_selectedPageIndex == 0
-            //     ?'assets/images/cashbox_filled.png'
-            //     :'assets/images/cashbox_outlined.png'),
-            // icon: Icon(_selectedPageIndex == 0
-            //     ? Icons.payments
-            //     : Icons.payments_outlined),
+            // TODO svg/material(нет outlined)
+            // icon: Transform.translate(
+            //   offset: const Offset(0,3),
+            //   child: SvgPicture.asset(
+            //     height: 32,
+            //     _selectedPageIndex == 0
+            //         ? 'assets/images/cashbox_filled.svg'
+            //         : 'assets/images/cashbox_outlined.svg',
+            //   ),
+            // ),
+
+            icon: Icon(_selectedPageIndex == 0
+                ? Icons.point_of_sale
+                : Icons.point_of_sale_outlined),
             label: 'Касса',
           ),
           NavigationDestination(
