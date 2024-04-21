@@ -1,5 +1,7 @@
+import 'package:chek_experiments/ui/screens/home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
+
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -29,148 +31,95 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    // final theme = Theme.of(context);
+    // bool isObscured = true;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: screenSize.height * (1 - 0.85)),
+          padding: EdgeInsets.only(top: screenSize.height * (1 - 0.8)),
           width: screenSize.width,
           height: screenSize.height,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              AppColors.littleGreen,
-              AppColors.darkGreen,
-            ],
-          )),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: screenSize.width / 1.6,
-                height: screenSize.height / 4.67,
-                child: Image.asset('assets/images/logo_light.png'),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              SizedBox(
-                width: screenSize.width / 1.5,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 5),
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: Colors.black12),
-                              color: Colors.white.withOpacity(0.7),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              controller: _login,
-                              decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 10),
-                                  border: InputBorder.none,
-                                  label: Text(
-                                    'Логин',
-                                    style: TextStyle(color: Colors.black54),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '@4ek.by',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Iskra',
-                            fontSize: 20,
-                            color: Colors.white.withOpacity(0.8),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.7),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        controller: _password,
-                        obscureText: true,
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     colors: <Color>[
+          //       Theme.of(context).colorScheme.primary,
+          //       Theme.of(context).colorScheme.inversePrimary,
+          //     ],
+          //   ),
+          // ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 56),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  width: double.infinity,
+                  // height: screenSize.height / 4.5,
+                  child: Image.asset('assets/images/logo_dark.png'),
+                ),
+                const SizedBox(
+                  height: 48,
+                ),
+                SizedBox(
+                  // width: screenSize.width / 1.5,
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: _login,
                         decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10),
-                            border: InputBorder.none,
+                            border: OutlineInputBorder(),
                             label: Text(
-                              'Пароль кассира',
-                              style: TextStyle(color: Colors.black54),
+                              'Логин',
                             )),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Container(
-                      clipBehavior: Clip.antiAlias,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1.3,
-                            color: Colors.white.withOpacity(0.75),
-                          )),
-                      child: Material(
-                        color: Colors.grey.withOpacity(0.25),
-                        child: Stack(children: [
-                          Center(
-                              child: Text(
-                            'ВОЙТИ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 24,
-                                fontFamily: 'Iskra',
-                                color: Colors.white.withOpacity(0.75)),
-                          )),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed('/menu_screen(botton_nav)');
-                              // print('${_login.text}@4ek.by');
-                            },
-                          ),
-                        ]),
+                      const SizedBox(
+                        height: 16,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.info_outline_rounded,
-                      size: 40,
-                    ),
-                    color: Colors.white,
+                      TextField(
+                        controller: _password,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.visibility),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                          border: const OutlineInputBorder(),
+                          label: const Text(
+                            'Пароль',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      FilledButton(
+                        style: FilledButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 48),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6))),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HomeScreen()));
+                        },
+                        child: const Text('Войти'),
+                      )
+                    ],
                   ),
                 ),
-              ),
-              const Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    'РУП "ИЗДАТЕЛЬСТВО "БЕЛБЛАНКАВЫД"',
-                    style: TextStyle(color: Colors.white, fontFamily: 'Iskra'),
-                  )),
-            ],
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text('РУП "ИЗДАТЕЛЬСТВО "БЕЛБЛАНКАВЫД"'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -178,3 +127,5 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 }
+
+

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../constants.dart';
-import '../theme/colors.dart';
 
 class CashRegisterScreen extends StatefulWidget {
   CashRegisterScreen({super.key});
@@ -27,9 +26,7 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ), //TODO возможно удалить?
+      appBar: AppBar(title: Text('Касса'),),
       body: Center(
         child: _isLoading
             ? buildCashBoxScreen()
@@ -69,46 +66,41 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
               )
             ],
           ),
-          OutlinedButton(
+          FilledButton(
             onPressed: () {},
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   'Кассир: ${Constants.cashierId}',
-                  style: textTheme.bodyLarge,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 6.0),
                   child: Icon(
                     Icons.change_circle,
-                    size: 24,
-                    color: AppColors.blackGreen,
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 250,),
+          const SizedBox(
+            height: 250,
+          ),
           OutlinedButton(
             onPressed: () {},
             child: const Text(
               'Открыть смену',
-              style: TextStyle(fontSize: 20),
             ),
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 'Смена №ХХ',
-                // style: AppTextStyles.menuText,
               ),
               Text(
                 '${DateFormat.yMd().format(DateTime.now())} ${DateFormat.Hms().format(DateTime.now())}',
-                // style: AppTextStyles.menuText,
               ),
             ],
           ),
@@ -116,10 +108,7 @@ class _CashRegisterScreenState extends State<CashRegisterScreen> {
             onPressed: () {
               Navigator.of(context).pushNamed('/cashbox_screen');
             },
-            child: const Text(
-              'Денежный ящик',
-              style: TextStyle(fontSize: 20),
-            ),
+            child: const Text('Денежный ящик'),
           ),
         ],
       ),

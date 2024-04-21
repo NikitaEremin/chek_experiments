@@ -1,9 +1,9 @@
 import 'package:chek_experiments/ui/screens/cash_register_screen.dart';
+import 'package:chek_experiments/ui/screens/nomenclature_screen.dart';
 import 'package:chek_experiments/ui/screens/reports_screen.dart';
 import 'package:chek_experiments/ui/screens/sell_screen.dart';
 import 'package:chek_experiments/ui/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedPageIndex = 0;
   final List<Widget> _pages = [
     CashRegisterScreen(),
-    SellScreen(),
+    const NomenclatureScreen(),
     ReportsScreen(),
     SettingsScreen(),
   ];
@@ -25,26 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedPageIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const SellScreen()));
+        },
+        // elevation: 0,
+        // shape: const CircleBorder(),
+        child: const Icon(Icons.shopping_cart),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: NavigationBar(
-        indicatorColor: AppColors.darkGreen,
         selectedIndex: _selectedPageIndex,
-        backgroundColor: AppColors.bottomNavBarColor,
-        overlayColor:
-            MaterialStateProperty.all(AppColors.darkGreen.withOpacity(0.5)),
         onDestinationSelected: (value) => _openPage(value),
         destinations: [
           NavigationDestination(
-            // TODO svg/material(нет outlined)
-            // icon: Transform.translate(
-            //   offset: const Offset(0,3),
-            //   child: SvgPicture.asset(
-            //     height: 32,
-            //     _selectedPageIndex == 0
-            //         ? 'assets/images/cashbox_filled.svg'
-            //         : 'assets/images/cashbox_outlined.svg',
-            //   ),
-            // ),
-
             icon: Icon(_selectedPageIndex == 0
                 ? Icons.point_of_sale
                 : Icons.point_of_sale_outlined),
@@ -53,10 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
           NavigationDestination(
             icon: Icon(
               _selectedPageIndex == 1
-                  ? Icons.shopping_cart
-                  : Icons.shopping_cart_outlined,
+                  ? Icons.inventory_2
+                  : Icons.inventory_2_outlined,
             ),
-            label: 'Продажа',
+            label: 'Товары',
           ),
           NavigationDestination(
             icon: Icon(_selectedPageIndex == 2
@@ -76,6 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _openPage(int index) {
-    setState(() => _selectedPageIndex = index);
+    setState(() {
+      _selectedPageIndex = index;
+    });
   }
 }

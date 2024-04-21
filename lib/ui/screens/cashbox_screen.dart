@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
 
 class CashBoxScreen extends StatefulWidget {
   const CashBoxScreen({super.key});
@@ -57,10 +56,13 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        side: const BorderSide(width: 1.5, color: AppColors.littleGreen),
-        textStyle: const TextStyle(fontSize: 30, fontFamily: 'Iskra'),
-        backgroundColor: Colors.white,
-        disabledBackgroundColor: Colors.grey[300],
+        side: const BorderSide(
+          width: 1.5,
+          // color: AppColors.littleGreen,
+        ),
+        // textStyle: const TextStyle(fontSize: 30, fontFamily: 'Iskra'),
+        // backgroundColor: Colors.white,
+        // disabledBackgroundColor: Colors.grey[300],
       ),
       onPressed: isActive ? () => onButtonPress(index) : null,
       child: child,
@@ -82,7 +84,10 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
               width: double.infinity,
               height: MediaQuery.of(context).size.width * 0.35,
               decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.littleGreen, width: 2.0),
+                  border: Border.all(
+                    // color: AppColors.littleGreen,
+                    width: 2.0,
+                  ),
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.white),
               child: TextField(

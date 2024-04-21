@@ -1,10 +1,8 @@
-import 'package:chek_experiments/ui/screens/home_screen(bottom_nav).dart';
-import 'package:chek_experiments/ui/screens/transitions.dart';
-import 'package:chek_experiments/ui/theme/colors.dart';
+import 'package:chek_experiments/ui/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-   const SplashScreen({super.key});
+  const SplashScreen({super.key});
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -38,7 +36,8 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).push(FadeTransitionRoute(widget: const HomeScreen()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => const AuthScreen()));
       }
     });
   }
@@ -47,29 +46,26 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      // backgroundColor: Colors.lightBlueAccent,
       body: FadeTransition(
         opacity: _fadeanimation,
         child: Container(
-          // padding: EdgeInsets.only(top: screenSize.height * (1 - 0.85)),
           width: screenSize.width,
           height: screenSize.height,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0, 0.65],
-            colors: <Color>[
-              AppColors.littleGreen,
-              AppColors.darkGreen,
-            ],
-          )),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0, 0.65],
+              colors: <Color>[
+                Theme.of(context).colorScheme.inversePrimary,
+                Theme.of(context).colorScheme.primary,
+              ],
+            ),
+          ),
           child: SlideTransition(
             position: _animation,
-            child: SizedBox(
-                // width: screenSize.width / 1.6,
-                // height: screenSize.height / 4.67,
-                child: Image.asset('assets/images/logo_light.png')),
+            child: SizedBox(child: Image.asset('assets/images/logo_light.png')),
           ),
         ),
       ),
