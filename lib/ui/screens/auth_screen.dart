@@ -1,8 +1,5 @@
 import 'package:chek_experiments/ui/screens/home_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 
 import '../constants.dart';
 
@@ -54,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       controller: _login,
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        border: OutlineInputBorder(),
+                        // border: OutlineInputBorder(),
                         label: Text('Логин'),
                       ),
                     ),
@@ -69,13 +66,14 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 10),
-                        border: const OutlineInputBorder(),
+                        // border: const OutlineInputBorder(),
                         label: const Text('Пароль'),
                       ),
                     ),
                     const SizedBox(height: 16),
                     FilledButton(
                       style: FilledButton.styleFrom(
+                        // backgroundColor: Colors.green[400]
                           minimumSize: const Size(double.infinity, 48),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
@@ -84,7 +82,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             builder: (BuildContext context) =>
                                 const HomeScreen()));
                       },
-                      child: const Text('Войти'),
+                      child: const Text('Войти', style: TextStyle(fontSize: 20),),
                     ),
                   ],
                 ),

@@ -53,16 +53,14 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   }
 
   Widget _buildButton(Widget child, int index, bool isActive) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        side: const BorderSide(
-          width: 1.5,
-          // color: AppColors.littleGreen,
-        ),
-        // textStyle: const TextStyle(fontSize: 30, fontFamily: 'Iskra'),
-        // backgroundColor: Colors.white,
-        // disabledBackgroundColor: Colors.grey[300],
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        textStyle: TextStyle(color: Colors.black, fontSize: 26),
+        foregroundColor: Colors.black,
+        elevation: 0,
+        backgroundColor: Colors.grey[200],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20), side: BorderSide.none),
       ),
       onPressed: isActive ? () => onButtonPress(index) : null,
       child: child,
@@ -72,7 +70,9 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text("Денежный ящик"),
       ),
       body: Padding(
@@ -80,16 +80,32 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
         child: Column(
           children: [
             Container(
+              padding: const EdgeInsets.only(top: 10),
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: FilledButton(
+                      onPressed: () {},
+                      child: const Text('Внести'),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.secondary,),
+                      onPressed: () {},
+                      child: const Text('Изъять'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
               alignment: Alignment.centerRight,
               width: double.infinity,
               height: MediaQuery.of(context).size.width * 0.35,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    // color: AppColors.littleGreen,
-                    width: 2.0,
-                  ),
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.white),
               child: TextField(
                 style: const TextStyle(
                   fontSize: 60,
@@ -99,6 +115,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                 enableInteractiveSelection: false,
                 autofocus: true,
                 decoration: const InputDecoration(
+                  hintText: '0.00',
                   border: InputBorder.none,
                 ),
                 showCursor: false,
@@ -133,28 +150,6 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                     ]),
               ),
             ),
-            Container(
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text('Внести'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      child: const Text('Изъять'),
-                    ),
-                  ),
-                ],
-              ),
-            )
           ],
         ),
       ),
