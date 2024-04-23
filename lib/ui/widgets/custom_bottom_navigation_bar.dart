@@ -31,14 +31,17 @@ class CustomBottomNavigationBar extends StatelessWidget {
       height: 70,
       width: double.infinity,
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), offset: Offset(0,3), blurRadius: 10, spreadRadius: 3)],
-        color: Theme.of(context).colorScheme.surfaceVariant,
+        // boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), offset: Offset(0,3), blurRadius: 2, spreadRadius: 3)],
+        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
 
           for (int i = 0; i < customBottomBarItems.length; i++) ...[
+            if(i == 2) ... [
+              const SizedBox(width: 56)
+            ],
             Expanded(
               child: CustomLineIndicatorBottomNavbarItems(
                 selectedColor: selectedColor,
@@ -100,7 +103,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -112,7 +115,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
               border: Border(
                 top: BorderSide(
                   color: currentIndex == index
-                      ? Colors.green
+                      ? Theme.of(context).colorScheme.surfaceTint
                       : Colors.transparent,
                   width: 3,
                 )
@@ -123,9 +126,9 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  size: 20,
+                  size: 24,
                   color: currentIndex == index
-                      ? Colors.green
+                      ? Theme.of(context).colorScheme.surfaceTint
                       : unSelectedColor,
                 ),
                 const SizedBox(
@@ -138,7 +141,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     color: currentIndex == index
-                        ? Colors.green
+                        ? Theme.of(context).colorScheme.surfaceTint
                         : unSelectedColor,
                   ),
                 ),

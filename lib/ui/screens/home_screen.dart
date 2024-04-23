@@ -27,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedPageIndex],
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
         onPressed: () {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const SellScreen()));
@@ -37,8 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomBottomNavigationBar(
+        unSelectedColor: Colors.grey[600],
         currentIndex: _selectedPageIndex,
-
         customBottomBarItems: [
           CustomBottomBarItems(icon: Icons.point_of_sale, label: 'Касса',),
           CustomBottomBarItems(icon: Icons.inventory_2, label: 'Товары'),

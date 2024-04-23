@@ -56,7 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         label: Text('Логин'),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: _password,
                       obscureText: _obscured,
@@ -73,10 +73,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         label: const Text('Пароль'),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
                     FilledButton(
                       style: FilledButton.styleFrom(
-                        // backgroundColor: Colors.green[400]
                           minimumSize: const Size(double.infinity, 48),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
