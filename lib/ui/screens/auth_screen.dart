@@ -13,6 +13,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _login = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool _obscured = true;
 
   @override
   void initState() {
@@ -58,10 +59,12 @@ class _AuthScreenState extends State<AuthScreen> {
                     const SizedBox(height: 16),
                     TextField(
                       controller: _password,
-                      obscureText: true,
+                      obscureText: _obscured,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: () {},
+                          onPressed: () {setState(() {
+                            _obscured = !_obscured;
+                          });},
                           icon: const Icon(Icons.visibility),
                         ),
                         contentPadding:
