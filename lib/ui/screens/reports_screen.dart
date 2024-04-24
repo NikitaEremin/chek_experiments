@@ -13,26 +13,25 @@ class ReportsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Отчёты'),),
-      body: ListView.separated(
-        itemBuilder: (context, index) => ListTile(
-          // leading: Icon(_reports[index].icon),
-          contentPadding: const EdgeInsets.only(
-            left: 16,
+    return Center(
+        child: ListView.separated(
+          itemBuilder: (context, index) => ListTile(
+            // leading: Icon(_reports[index].icon),
+            contentPadding: const EdgeInsets.only(
+              left: 16,
+            ),
+            onTap: () {
+              if(index == 2){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => DocumentScreen(),));
+              }
+            },
+            title: Text(_reports[index].title),
           ),
-          onTap: () {
-            if(index == 2){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DocumentScreen(),));
-            }
-          },
-          title: Text(_reports[index].title),
+          itemCount: _reports.length,
+          separatorBuilder: (context, index) => const SizedBox(
+            height: 0,
+          ),
         ),
-        itemCount: _reports.length,
-        separatorBuilder: (context, index) => const SizedBox(
-          height: 0,
-        ),
-      ),
     );
   }
 }

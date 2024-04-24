@@ -55,7 +55,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
   Widget _buildButton(Widget child, int index, bool isActive) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        textStyle: TextStyle(color: Colors.black, fontSize: 26),
+        textStyle: const TextStyle(color: Colors.black, fontSize: 26),
         foregroundColor: Colors.black,
         elevation: 0,
         backgroundColor: Colors.grey[200],
@@ -93,8 +93,8 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                   ),
                   const SizedBox(width: 20),
                   Expanded(
-                    child: FilledButton(
-                      style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.secondary,),
+                    child: FilledButton.tonal(
+                      // style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.secondary,),
                       onPressed: () {},
                       child: const Text('Изъять'),
                     ),

@@ -18,13 +18,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
     required this.customBottomBarItems,
     this.unSelectedColor,
     this.selectedIconSize = 20,
-    this.unselectedIconSize = 15,
+    this.unselectedIconSize = 20,
     this.currentIndex = 0,
     required this.onTap,
-
   });
 
-  /// body of nav bar.
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,11 +35,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-
           for (int i = 0; i < customBottomBarItems.length; i++) ...[
-            if(i == 2) ... [
-              const SizedBox(width: 56)
-            ],
+            if (i == 2) ...[const SizedBox(width: 58)],
             Expanded(
               child: CustomLineIndicatorBottomNavbarItems(
                 selectedColor: selectedColor,
@@ -62,7 +57,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 }
 
-
 class CustomBottomBarItems {
   final IconData icon;
   final String label;
@@ -73,9 +67,7 @@ class CustomBottomBarItems {
   });
 }
 
-
 class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
-
   final IconData? icon;
   final String? label;
   final Color? selectedColor;
@@ -86,7 +78,6 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   final int index;
   final Function(int) onTap;
 
-
   const CustomLineIndicatorBottomNavbarItems({
     super.key,
     this.icon,
@@ -94,7 +85,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
     this.selectedColor,
     this.unSelectedColor,
     this.selectedIconSize = 25,
-    this.unselectedIconSize = 15,
+    this.unselectedIconSize = 20,
     this.currentIndex,
     required this.onTap,
     required this.index,
@@ -103,7 +94,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -112,21 +103,21 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(
-                  color: currentIndex == index
-                      ? Theme.of(context).colorScheme.surfaceTint
-                      : Colors.transparent,
-                  width: 3,
-                )
-              )
-            ),
+                border: Border(
+                    top: BorderSide(
+              color: currentIndex == index
+                  ? Theme.of(context).colorScheme.surfaceTint
+                  : Colors.transparent,
+              width: 3,
+            ))),
             padding: const EdgeInsets.only(top: 8.0),
             child: Column(
               children: [
                 Icon(
                   icon,
-                  size: 24,
+                  size: currentIndex == index
+                ? selectedIconSize
+                  : unselectedIconSize,
                   color: currentIndex == index
                       ? Theme.of(context).colorScheme.surfaceTint
                       : unSelectedColor,
@@ -139,11 +130,13 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 11,
-                    color: currentIndex == index
-                        ? Theme.of(context).colorScheme.surfaceTint
-                        : unSelectedColor,
-                  ),
+                      fontSize: 11,
+                      color: currentIndex == index
+                          ? Theme.of(context).colorScheme.surfaceTint
+                          : unSelectedColor,
+                      fontWeight: currentIndex == index
+                          ? FontWeight.bold
+                          : FontWeight.w400),
                 ),
               ],
             ),

@@ -31,7 +31,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 56),
@@ -62,9 +61,11 @@ class _AuthScreenState extends State<AuthScreen> {
                       obscureText: _obscured,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: () {setState(() {
-                            _obscured = !_obscured;
-                          });},
+                          onPressed: () {
+                            setState(() {
+                              _obscured = !_obscured;
+                            });
+                          },
                           icon: const Icon(Icons.visibility),
                         ),
                         contentPadding:
@@ -84,7 +85,10 @@ class _AuthScreenState extends State<AuthScreen> {
                             builder: (BuildContext context) =>
                                 const HomeScreen()));
                       },
-                      child: const Text('Войти', style: TextStyle(fontSize: 20),),
+                      child: const Text(
+                        'Войти',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 ),
@@ -93,7 +97,10 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Text('ver. 3.0.0\nРУП "Издательство "БЕЛБЛАНКАВЫД"', textAlign: TextAlign.center,),
+      bottomNavigationBar: const Text(
+        'ver. 3.0.0\nРУП "Издательство "БЕЛБЛАНКАВЫД"',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

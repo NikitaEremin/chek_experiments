@@ -1,4 +1,7 @@
+import 'package:chek_experiments/ui/screens/detail_product_screen.dart';
+import 'package:chek_experiments/ui/widgets/slide_route.dart';
 import 'package:flutter/material.dart';
+import '../../data/models/product.dart';
 import '../constants.dart';
 
 class NomenclatureScreen extends StatelessWidget {
@@ -9,15 +12,10 @@ class NomenclatureScreen extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     ThemeData theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Товары', style: TextStyle(color: theme.colorScheme.onPrimary),),
-        surfaceTintColor: Colors.transparent,
-        backgroundColor: theme.colorScheme.surfaceTint,
-      ),
-      body: Column(
+    return Center(
+      child: Column(
         children: [
-          const SizedBox(height: 14),
+          const SizedBox(height: 50),
           SearchWidget(theme: theme, screenSize: screenSize),
           const SizedBox(height: 8),
           Padding(
@@ -33,23 +31,26 @@ class NomenclatureScreen extends StatelessWidget {
           const SizedBox(height: 8),
           const CategoryCarousel(),
           const SizedBox(height: 8),
-          ListOfProducts(),
+          const ListOfProducts(),
         ],
       ),
     );
   }
 }
 
-class ListOfProducts extends StatelessWidget {
-  ListOfProducts({super.key});
+class ListOfProducts extends StatefulWidget {
+  const ListOfProducts({super.key});
 
+  @override
+  State<ListOfProducts> createState() => _ListOfProductsState();
+}
+
+class _ListOfProductsState extends State<ListOfProducts> {
+  //TODO вынести
   final List<Product> _products = [
-    Product(id: 0, name: 'Энергетик', price: 5.2),
-    Product(id: 1, name: 'Вода', price: 1.45),
-    Product(id: 2, name: 'Хлеб', price: 1.02),
-    Product(id: 3, name: 'Энергетик', price: 5.2),
-    Product(id: 4, name: 'Вода', price: 1.45),
-    Product(id: 5, name: 'Хлеб', price: 1.02),
+    Product(name: 'Энергетик', price: 5.2, image: Image.asset(Constants.energy), gtin: '8001505002119'),
+    Product(name: 'Вода', price: 1.45, image: Image.asset(Constants.water), gtin: '4620770580272'),
+    Product(name: 'Хлеб', price: 1.02, image: Image.asset(Constants.bread), gtin: '4603334001529'),
   ];
 
   @override
@@ -59,10 +60,13 @@ class ListOfProducts extends StatelessWidget {
         itemCount: _products.length,
         itemBuilder: (context, index) {
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(createRoute(DetailProductScreen(product: _products[index],)));
+            },
             leading: SizedBox(
               width: 40,
-              child: Image.asset(Constants.darkLogo),
+              height: 40,
+              child: _products[index].image,
             ),
             title: Text(_products[index].name),
             subtitle: Text(_products[index].price.toString()),
@@ -74,15 +78,7 @@ class ListOfProducts extends StatelessWidget {
   }
 }
 
-//TODO вынести в модели
-class Product {
-  int id;
-  String name;
-  double price;
-  Image? image;
 
-  Product({required this.id, required this.name, required this.price});
-}
 
 class CategoryCarousel extends StatefulWidget {
   const CategoryCarousel({super.key});
@@ -170,7 +166,7 @@ class SearchWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12))),
               onPressed: () {},
-              icon: const Icon(Icons.document_scanner),
+              icon: const Icon(Icons.qr_code_scanner),
             ),
           ),
         ],
