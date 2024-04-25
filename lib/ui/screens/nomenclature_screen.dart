@@ -1,8 +1,11 @@
+
+import 'package:chek_experiments/data/models/product.dart';
+import 'package:chek_experiments/providers/nomenclature_provider.dart';
 import 'package:chek_experiments/ui/screens/detail_product_screen.dart';
 import 'package:chek_experiments/ui/widgets/slide_route.dart';
 import 'package:flutter/material.dart';
-import '../../data/models/product.dart';
-import '../constants.dart';
+import 'package:provider/provider.dart';
+
 
 class NomenclatureScreen extends StatelessWidget {
   const NomenclatureScreen({super.key});
@@ -11,23 +14,13 @@ class NomenclatureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     ThemeData theme = Theme.of(context);
-
     return Center(
       child: Column(
         children: [
           const SizedBox(height: 50),
           SearchWidget(theme: theme, screenSize: screenSize),
           const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Категории',
-                style: theme.textTheme.headlineSmall,
-              ),
-            ),
-          ),
+          CategoryLine(theme: theme),
           const SizedBox(height: 8),
           const CategoryCarousel(),
           const SizedBox(height: 8),
@@ -38,38 +31,52 @@ class NomenclatureScreen extends StatelessWidget {
   }
 }
 
-class ListOfProducts extends StatefulWidget {
-  const ListOfProducts({super.key});
+class CategoryLine extends StatelessWidget {
+  const CategoryLine({
+    super.key,
+    required this.theme,
+  });
 
-  @override
-  State<ListOfProducts> createState() => _ListOfProductsState();
-}
-
-class _ListOfProductsState extends State<ListOfProducts> {
-  //TODO вынести
-  final List<Product> _products = [
-    Product(name: 'Энергетик', price: 5.2, image: Image.asset(Constants.energy), gtin: '8001505002119'),
-    Product(name: 'Вода', price: 1.45, image: Image.asset(Constants.water), gtin: '4620770580272'),
-    Product(name: 'Хлеб', price: 1.02, image: Image.asset(Constants.bread), gtin: '4603334001529'),
-  ];
+  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          'Категории',
+          style: theme.textTheme.headlineSmall,
+        ),
+      ),
+    );
+  }
+}
+
+class ListOfProducts extends StatelessWidget {
+  const ListOfProducts({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    NomenclatureProvider provider = context.watch<NomenclatureProvider>();
+    List<Product> products = provider.products;
+
     return Expanded(
       child: ListView.builder(
-        itemCount: _products.length,
+        itemCount: products.length,
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
-              Navigator.of(context).push(createRoute(DetailProductScreen(product: _products[index],)));
+              Navigator.push(context, createRoute(DetailProductScreen(index: index)));
             },
             leading: SizedBox(
               width: 40,
               height: 40,
-              child: _products[index].image,
+              child: products[index].image,
             ),
-            title: Text(_products[index].name),
-            subtitle: Text(_products[index].price.toString()),
+            title: Text(products[index].name),
+            subtitle: Text(products[index].price.toString()),
             trailing: const Icon(Icons.chevron_right),
           );
         },
@@ -77,8 +84,6 @@ class _ListOfProductsState extends State<ListOfProducts> {
     );
   }
 }
-
-
 
 class CategoryCarousel extends StatefulWidget {
   const CategoryCarousel({super.key});
