@@ -36,7 +36,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           for (int i = 0; i < customBottomBarItems.length; i++) ...[
-            if (i == 2) ...[const SizedBox(width: 58)],
+            // if (i == 2) ...[const SizedBox(width: 58)],
             Expanded(
               child: CustomLineIndicatorBottomNavbarItems(
                 selectedColor: selectedColor,
@@ -102,6 +102,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
             onTap(index);
           },
           child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 border: Border(
                     top: BorderSide(
@@ -116,8 +117,8 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
                 Icon(
                   icon,
                   size: currentIndex == index
-                ? selectedIconSize
-                  : unselectedIconSize,
+                      ? selectedIconSize
+                      : unselectedIconSize,
                   color: currentIndex == index
                       ? Theme.of(context).colorScheme.surfaceTint
                       : unSelectedColor,

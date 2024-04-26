@@ -87,14 +87,21 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                 children: [
                   Expanded(
                     child: FilledButton(
+                      style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        fixedSize: Size(double.infinity, 70)
+                      ),
                       onPressed: () {},
                       child: const Text('Внести'),
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: FilledButton.tonal(
-                      // style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.secondary,),
+                      style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        fixedSize: Size(double.infinity, 70)
+                      ),
                       onPressed: () {},
                       child: const Text('Изъять'),
                     ),

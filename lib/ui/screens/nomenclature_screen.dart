@@ -14,18 +14,21 @@ class NomenclatureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     ThemeData theme = Theme.of(context);
-    return Center(
-      child: Column(
-        children: [
-          const SizedBox(height: 50),
-          SearchWidget(theme: theme, screenSize: screenSize),
-          const SizedBox(height: 8),
-          CategoryLine(theme: theme),
-          const SizedBox(height: 8),
-          const CategoryCarousel(),
-          const SizedBox(height: 8),
-          const ListOfProducts(),
-        ],
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {  }, child: Icon(Icons.add),),
+      body: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            SearchWidget(theme: theme, screenSize: screenSize),
+            const SizedBox(height: 8),
+            CategoryLine(theme: theme),
+            const SizedBox(height: 8),
+            const CategoryCarousel(),
+            const SizedBox(height: 8),
+            const ListOfProducts(),
+          ],
+        ),
       ),
     );
   }

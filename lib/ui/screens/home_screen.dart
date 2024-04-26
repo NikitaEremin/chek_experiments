@@ -1,4 +1,4 @@
-import 'package:chek_experiments/ui/screens/cash_register_screen.dart';
+import 'package:chek_experiments/ui/screens/cashier_screen.dart';
 import 'package:chek_experiments/ui/screens/nomenclature_screen.dart';
 import 'package:chek_experiments/ui/screens/reports_screen.dart';
 import 'package:chek_experiments/ui/screens/sell_screen.dart';
@@ -16,8 +16,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedPageIndex = 0;
   final List<Widget> _pages = [
-    const CashRegisterScreen(),
+    const CashierScreen(),
     const NomenclatureScreen(),
+    const SellScreen(),
     ReportsScreen(),
     SettingsScreen(),
   ];
@@ -26,15 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedPageIndex],
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-        foregroundColor: Colors.white,
-        onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const SellScreen()));
-        },
-        child: const Icon(Icons.shopping_cart),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -42,11 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
         unSelectedColor: Colors.grey[500],
         currentIndex: _selectedPageIndex,
         customBottomBarItems: [
-          CustomBottomBarItems(
-            icon: Icons.point_of_sale,
-            label: 'Касса',
-          ),
+          CustomBottomBarItems(icon: Icons.point_of_sale, label: 'Касса'),
           CustomBottomBarItems(icon: Icons.inventory_2, label: 'Товары'),
+          CustomBottomBarItems(icon: Icons.shopping_cart, label: 'Продажа'),
           CustomBottomBarItems(icon: Icons.summarize, label: 'Отчеты'),
           CustomBottomBarItems(icon: Icons.settings, label: 'Настройки'),
         ],
