@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../data/models/product.dart';
-import '../ui/constants.dart';
+import '../data/constants.dart';
 
 class NomenclatureProvider extends ChangeNotifier{
 

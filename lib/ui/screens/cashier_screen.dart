@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../constants.dart';
+import '../../data/constants.dart';
 
 class CashierScreen extends StatefulWidget {
   const CashierScreen({super.key});
@@ -10,6 +10,8 @@ class CashierScreen extends StatefulWidget {
 }
 
 class _CashierScreenState extends State<CashierScreen> {
+  String date = '';
+
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -26,7 +28,7 @@ class _CashierScreenState extends State<CashierScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                   color: colorScheme.surface.withOpacity(0.5),
                   clipBehavior: Clip.hardEdge,
                   child: InkWell(
@@ -93,13 +95,21 @@ class _CashierScreenState extends State<CashierScreen> {
                   children: [
                     const SizedBox(height: 24),
                     OutlinedButton(
-                        onPressed: () {}, child: const Text('Открыть смену')),
+                        onPressed: () {
+                          setState(() {
+                            date = DateFormat.yMd()
+                                    .format(DateTime.now())
+                                    .toString() +
+                                (DateFormat.Hms().format(DateTime.now()))
+                                    .toString();
+                          });
+                        },
+                        child: const Text('Открыть смену')),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('Смена №ХХ'),
-                        Text(
-                            '${DateFormat.yMd().format(DateTime.now())} ${DateFormat.Hms().format(DateTime.now())}')
+                        Text(date)
                       ],
                     ),
                     OutlinedButton(
@@ -107,7 +117,7 @@ class _CashierScreenState extends State<CashierScreen> {
                           Navigator.of(context).pushNamed('/cashbox_screen');
                         },
                         child: const Text('Денежный ящик')),
-                    Text('Статистика'),
+                    const Text('Статистика'),
                   ],
                 ),
               ),

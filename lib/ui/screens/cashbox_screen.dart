@@ -69,6 +69,8 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme tt = Theme.of(context).textTheme;
+    // ColorScheme cs = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -88,9 +90,10 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                   Expanded(
                     child: FilledButton(
                       style: FilledButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        fixedSize: Size(double.infinity, 70)
-                      ),
+                          textStyle: tt.titleMedium,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          fixedSize: Size(double.infinity, 70)),
                       onPressed: () {},
                       child: const Text('Внести'),
                     ),
@@ -99,9 +102,10 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                   Expanded(
                     child: FilledButton.tonal(
                       style: FilledButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        fixedSize: Size(double.infinity, 70)
-                      ),
+                          textStyle: tt.titleMedium,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          fixedSize: Size(double.infinity, 70)),
                       onPressed: () {},
                       child: const Text('Изъять'),
                     ),
@@ -148,12 +152,7 @@ class _CashBoxScreenState extends State<CashBoxScreen> {
                       _buildButton(const Text(','), 9, isCommaActive),
                       _buildButton(const Text('0'), 10, true),
                       _buildButton(
-                          const Icon(
-                            Icons.backspace,
-                            size: 30,
-                          ),
-                          11,
-                          true),
+                          const Icon(Icons.backspace, size: 30), 11, true),
                     ]),
               ),
             ),

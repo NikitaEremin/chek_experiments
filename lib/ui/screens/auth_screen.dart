@@ -1,7 +1,7 @@
 import 'package:chek_experiments/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../data/constants.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
